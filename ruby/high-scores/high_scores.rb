@@ -19,11 +19,16 @@ class HighScores
   end
 
   def report
-    sentence = "Your latest score was #{latest}. "
-    if personal_best == latest
-      sentence + "That's your personal best!"
-    elsif personal_best > latest
-      sentence + "That's #{personal_best - latest} short of your personal best!"
-    end
+    "Your latest score was #{latest}. #{praise}"
+  end
+
+  def just_achieved_best?
+    personal_best == latest
+  end
+
+  def praise
+    return "That's your personal best!" if just_achieved_best?
+
+    "That's #{personal_best - latest} short of your personal best!"
   end
 end
